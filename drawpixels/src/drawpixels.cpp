@@ -1,10 +1,9 @@
 // Extension lib defines
-#if !defined(DM_HEADLESS)
 #define LIB_NAME "DrawPixels"
 #define MODULE_NAME "drawpixels"
 
-#define DLIB_LOG_DOMAIN LIB_NAME
-#define M_PI 3.14159265358979323846
+// #define DLIB_LOG_DOMAIN LIB_NAME
+// #define M_PI 3.14159265358979323846
 
 #include <dmsdk/sdk.h>
 #include <math.h>
@@ -247,9 +246,3 @@ dmExtension::Result FinalizeDrawPixelsExtension(dmExtension::Params *params)
 }
 
 DM_DECLARE_EXTENSION(DrawPixels, LIB_NAME, AppInitializeDrawPixelsExtension, AppFinalizeDrawPixelsExtension, InitializeDrawPixelsExtension, 0, 0, FinalizeDrawPixelsExtension)
-#else
-
-// dummy implementation
-extern "C" void DrawPixels() {}
-
-#endif
