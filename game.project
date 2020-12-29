@@ -15,5 +15,5 @@ input_method = HiddenInputField
 title = DrawPixels
 
 [library]
-include_dirs = /drawpixels
+include_dirs = drawpixels
 
