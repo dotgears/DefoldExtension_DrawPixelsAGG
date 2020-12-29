@@ -1,4 +1,5 @@
 // Extension lib defines
+#if !defined(DM_HEADLESS)
 #define LIB_NAME "DrawPixels"
 #define MODULE_NAME "drawpixels"
 
@@ -246,3 +247,9 @@ dmExtension::Result FinalizeDrawPixelsExtension(dmExtension::Params *params)
 }
 
 DM_DECLARE_EXTENSION(DrawPixels, LIB_NAME, AppInitializeDrawPixelsExtension, AppFinalizeDrawPixelsExtension, InitializeDrawPixelsExtension, 0, 0, FinalizeDrawPixelsExtension)
+#else
+
+// dummy implementation
+extern "C" void DrawPixels() {}
+
+#endif
