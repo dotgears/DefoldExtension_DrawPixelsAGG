@@ -23,7 +23,7 @@ function init(self)
 	}
 
 	drawpixels.setup(self.buffer_info)
-
+	
 	drawpixels.setLineWidth(5)
 	drawpixels.setLineColor(255, 255, 255, 128)
 
@@ -38,13 +38,9 @@ function update(self, dt)
 
 	drawpixels.removePath()
 
-	drawpixels.moveTo(0, 0)
-	drawpixels.lineTo(0, 100)
-	drawpixels.lineTo(100, 100)
-	drawpixels.lineTo(100, 0)
-	drawpixels.lineTo(0, 0)
+	drawpixels.star(0,0,50,100,math.pi * 0.5 ,5)
 	
-	drawpixels.drawPath()
+	
 	
 	resource.set_texture(self.resource_path, self.header, self.buffer_info.buffer)
 end

@@ -199,6 +199,180 @@ static int drawpixels_setLineColor(lua_State *L)
 	return 0;
 }
 
+static int drawpixels_triangle(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	double x1 = luaL_checknumber(L, 1)+ offset_x;
+	double y1 = luaL_checknumber(L, 2)+ offset_y;
+	double x2 = luaL_checknumber(L, 3)+ offset_x;
+	double y2 = luaL_checknumber(L, 4)+ offset_y;
+	double x3 = luaL_checknumber(L, 5)+ offset_x;
+	double y3 = luaL_checknumber(L, 6)+ offset_y;
+
+	mAgg->triangle(x1, y1, x2, y2, x3, y3);
+
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
+static int drawpixels_rectangle(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	double x1 = luaL_checknumber(L, 1)+ offset_x;
+	double y1 = luaL_checknumber(L, 2)+ offset_y;
+	double x2 = luaL_checknumber(L, 3)+ offset_x;
+	double y2 = luaL_checknumber(L, 4)+ offset_y;
+
+	mAgg->rectangle(x1, y1, x2, y2);
+
+	assert(top == lua_gettop(L));
+
+	printf("%f", top);
+
+	return 0;
+
+}
+
+
+static int drawpixels_ellipse(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	double cx = luaL_checknumber(L, 1)+ offset_x;
+	double cy = luaL_checknumber(L, 2)+ offset_y;
+	double rx = luaL_checknumber(L, 3);
+	double ry = luaL_checknumber(L, 4);
+
+	mAgg->ellipse(cx,cy,rx,ry);
+
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
+static int drawpixels_arc(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	double cx = luaL_checknumber(L, 1)+ offset_x;
+	double cy = luaL_checknumber(L, 2)+ offset_y;
+	double rx = luaL_checknumber(L, 3);
+	double ry = luaL_checknumber(L, 4);
+	double start = luaL_checknumber(L, 5);
+	double sweep = luaL_checknumber(L, 6);
+	
+	mAgg->arc(cx,cy,rx,ry,start,sweep);
+
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
+static int drawpixels_star(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	double cx = luaL_checknumber(L, 1) + offset_x;
+	double cy = luaL_checknumber(L, 2) + offset_y;
+	double rx = luaL_checknumber(L, 3);
+	double ry = luaL_checknumber(L, 4);
+	double startAngle = luaL_checknumber(L, 5);
+	double numRays = luaL_checknumber(L, 6);
+	
+	mAgg->star(cx,cy,rx,ry,startAngle,numRays);
+
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
+static int drawpixels_roundedRect(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	if (top == 5) 
+	{ 
+		double x1 = luaL_checknumber(L, 1)+ offset_x;
+		double y1 = luaL_checknumber(L, 2)+ offset_y;
+		double x2 = luaL_checknumber(L, 3)+ offset_x;
+		double y2 = luaL_checknumber(L, 4)+ offset_y;
+		double r = luaL_checknumber(L, 5);
+		mAgg->roundedRect(x1,y1,x2,y2,r);
+
+		assert(top == lua_gettop(L));
+	}
+
+	else if (top == 6) 
+	{
+		double x1 = luaL_checknumber(L, 1)+ offset_x;
+		double y1 = luaL_checknumber(L, 2)+ offset_y;
+		double x2 = luaL_checknumber(L, 3)+ offset_x;
+		double y2 = luaL_checknumber(L, 4)+ offset_y;
+		double rx = luaL_checknumber(L, 5);
+		double ry = luaL_checknumber(L, 6);
+
+		mAgg->roundedRect(x1,y1,x2,y2,rx,ry);
+
+		assert(top == lua_gettop(L));
+	}
+	
+	else if (top == 8) 
+	{
+		double x1 = luaL_checknumber(L, 1)+ offset_x;
+		double y1 = luaL_checknumber(L, 2)+ offset_y;
+		double x2 = luaL_checknumber(L, 3)+ offset_x;
+		double y2 = luaL_checknumber(L, 4)+ offset_y;
+		double rxBottom = luaL_checknumber(L, 5);
+		double ryBottom = luaL_checknumber(L, 6);
+		double rxTop = luaL_checknumber(L, 7);
+		double ryTop = luaL_checknumber(L, 8);
+
+
+		mAgg->roundedRect(x1,y1,x2,y2,rxBottom,ryBottom,rxTop,ryTop);
+
+		assert(top == lua_gettop(L));
+	}
+
+
+	
+	return 0;
+}
+
+static int drawpixels_curve(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	if (top == 6) 
+	{ 
+		double x1 = luaL_checknumber(L, 1);
+		double y1 = luaL_checknumber(L, 2);
+		double x2 = luaL_checknumber(L, 3);
+		double y2 = luaL_checknumber(L, 4);
+		double x3 = luaL_checknumber(L, 5);
+		double y3 = luaL_checknumber(L, 6);
+		mAgg->curve(x1,y1,x2,y2,x3,y3);
+
+		assert(top == lua_gettop(L));
+	}
+	else if (top == 8) 
+	{
+		double x1 = luaL_checknumber(L, 1);
+		double y1 = luaL_checknumber(L, 2);
+		double x2 = luaL_checknumber(L, 3);
+		double y2 = luaL_checknumber(L, 4);
+		double x3 = luaL_checknumber(L, 5);
+		double y3 = luaL_checknumber(L, 6);
+		double x4 = luaL_checknumber(L, 7);
+		double y4 = luaL_checknumber(L, 8);
+
+		mAgg->curve(x1,y1,x2,y2,x3,y3,x4,y4);
+
+		assert(top == lua_gettop(L));
+	}
+	return 0;
+}
+
+
+
 // Functions exposed to Lua
 static const luaL_reg Module_methods[] =
 	{
@@ -212,6 +386,14 @@ static const luaL_reg Module_methods[] =
 		{"lineTo", drawpixels_lineTo},
 		{"drawPath", drawpixels_drawPath},
 		{"removePath", drawpixels_removePath},
+		{"triangle", drawpixels_triangle},
+		{"rectangle", drawpixels_rectangle}, 
+		{"ellipse", drawpixels_ellipse}, 
+		{"arc", drawpixels_arc},
+		{"star", drawpixels_star},
+		{"roundedRect",drawpixels_roundedRect},
+		{"curve", drawpixels_curve},
+
 
 		{0, 0}};
 
