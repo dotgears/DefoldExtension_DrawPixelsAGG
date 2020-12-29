@@ -1,0 +1,50 @@
+local settings = {
+	BUFFER_WIDTH = 1024,
+	BUFFER_HEIGHT = 1024
+}
+
+function init(self)
+
+	self.buffer_info = {
+		buffer = buffer.create(settings.BUFFER_WIDTH * settings.BUFFER_HEIGHT, {{name = hash("rgba"), type = buffer.VALUE_TYPE_UINT8, count = 4}}),
+		width = settings.BUFFER_WIDTH,
+		height = settings.BUFFER_HEIGHT,
+		channels = 4 -- 3 for rgb, 4 for rgba
+	}
+
+	self.resource_path = go.get("#sprite", "texture0")
+
+	self.header = {
+		width = settings.BUFFER_WIDTH,
+		height = settings.BUFFER_HEIGHT,
+		type = resource.TEXTURE_TYPE_2D,
+		format = resource.TEXTURE_FORMAT_RGBA,
+		num_mip_maps = 1
+	}
+
+	drawpixels.setup(self.buffer_info)
+
+	drawpixels.setLineWidth(5)
+	drawpixels.setLineColor(255, 255, 255, 128)
+
+end
+
+function final(self)
+	drawpixels.destroy()
+end
+
+function update(self, dt)
+	drawpixels.clear(0, 0, 0, 0)
+
+	drawpixels.removePath()
+
+	drawpixels.moveTo(0, 0)
+	drawpixels.lineTo(0, 100)
+	drawpixels.lineTo(100, 100)
+	drawpixels.lineTo(100, 0)
+	drawpixels.lineTo(0, 0)
+	
+	drawpixels.drawPath()
+	
+	resource.set_texture(self.resource_path, self.header, self.buffer_info.buffer)
+end
