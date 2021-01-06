@@ -866,9 +866,10 @@ void Agg2D::curve(double x1, double y1, double x2, double y2, double x3, double 
 void Agg2D::polygon(double *xy, int numPoints)
 {
     m_path.remove_all();
-    //m_path.add_poly(xy, numPoints);
-    m_path.concat_poly(xy, 0, true); // JME
-    closePolygon();
+    // m_path.add_poly(xy, numPoints);
+    // m_path.concat_poly(xy, 0, true); // JME
+    m_path.concat_poly(xy, numPoints, true); //dotGears
+    // closePolygon(); dotGears -- concat_poly closed param set to true
     drawPath(FillAndStroke);
 }
 
@@ -877,7 +878,8 @@ void Agg2D::polyline(double *xy, int numPoints)
 {
     m_path.remove_all();
     //m_path.add_poly(xy, numPoints);
-    m_path.concat_poly(xy, 0, true); // JME
+    // m_path.concat_poly(xy, 0, true); // JME
+    m_path.concat_poly(xy, numPoints, false); //dotGears
     drawPath(StrokeOnly);
 }
 

@@ -38,9 +38,16 @@ function update(self, dt)
 
 	drawpixels.removePath()
 
-	drawpixels.star(0,0,50,100,math.pi * 0.5 ,5)
+	-- drawpixels.star(0,0,50,100,math.pi * 0.5 ,5)
+	local xy = { 0, 0, 0, 100, 100, 100 }
+	drawpixels.polygon(xy)
+
+	local xy2 = {}
+	for k, v in pairs(xy) do 
+		table.insert(xy2, v + 150)
+	end
+	drawpixels.polyline(xy2)
 	
-	
-	
+
 	resource.set_texture(self.resource_path, self.header, self.buffer_info.buffer)
 end
