@@ -22,8 +22,6 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
 `channel`: This is set to 3 if you use RGB, and 4 for RGBA.  
 
-##### A 
-
 
 ## Exposed functions: 
 
