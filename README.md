@@ -23,9 +23,11 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 
 ## Exposed functions: 
 
-- #### `drawpixels.setup(buffer_info)`: Setup to use the drawpixels. Take the buffer_info declared above as input. 
+- #### `drawpixels.setup(buffer_info)`: 
+  - Setup to use the drawpixels. Take the buffer_info declared above as input. 
 
-- #### `drawpixels.destroy()`: Destroy all what have been drawn. 
+- #### `drawpixels.destroy()`: 
+  - Destroy all what have been drawn. 
 
 - #### `drawpixels.clear(r,g,b,a)`: 
 
@@ -44,7 +46,7 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 
 - #### `drawpixels.lineTo(x,y)`: 
 
-From the current position of the cursor, draw a line to `(x,y)`. 
+   - From the current position of the cursor, draw a line to `(x,y)`. 
 
 - #### `drawpixels.drawPath()`:
 
@@ -88,7 +90,7 @@ From the current position of the cursor, draw a line to `(x,y)`.
 
   - `ry`: Vertical radius of the star. 
   
-- #### `drawpixels.roundedRect(x1,y1,x2,y2,r)
+- #### `drawpixels.roundedRect(x1,y1,x2,y2,r)`:
 
   - `x1` and `y1`: Position of bottom-left point of the rectangle. 
 
@@ -96,7 +98,22 @@ From the current position of the cursor, draw a line to `(x,y)`.
   
   - `r`: radius of the rounded circle at the edge. 
   
-- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3)
+- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3):
+
+  - `x1` and `y1`: Starting point of the curve. 
+    
+  - `x3` and `y3`: Ending point of the curve.
+  
+- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3,x4,y4)`:
+
+  - `x1` and `y1`: Starting point of the curve. 
+  
+  
+  - `x4` and `y4`: Ending point of the curve.
+  
+  
+  
+  
 
 
   
