@@ -36,6 +36,8 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 
 - #### `drawpixels.setLineColor(r,g,b,a)`: 
 
+  - Set line color using RGBA color code.
+
 - #### `drawpixels.moveTo(x,y)`: 
 
   - Move the draw cursor to position `(x,y)`.
@@ -50,7 +52,7 @@ From the current position of the cursor, draw a line to `(x,y)`.
 
 - #### `drawpixels.triangle(x1,y1,x2,y2,x3,y3)`:
 
-A triangle will be draw starting from point `(x1,y1)` to `(x3,y3)`. 
+  - A triangle will be draw starting from point `(x1,y1)` to `(x3,y3)`. 
 
 - #### `drawpixels.rectangle(x1,y1,x2,y2)`:
 
@@ -85,6 +87,18 @@ A triangle will be draw starting from point `(x1,y1)` to `(x3,y3)`.
   - `rx`: Horizontal radius of the star. 
 
   - `ry`: Vertical radius of the star. 
+  
+- #### `drawpixels.roundedRect(x1,y1,x2,y2,r)
+
+  - `x1` and `y1`: Position of bottom-left point of the rectangle. 
+
+  - `x2` and `y2`: Position of the top-right point of the rectangle. 
+  
+  - `r`: radius of the rounded circle at the edge. 
+  
+- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3)
+
+
   
   
 
