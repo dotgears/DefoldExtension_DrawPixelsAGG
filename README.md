@@ -117,14 +117,13 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to Fetch the depende
 
   - `xy`: A table contains all the coordinate of the points in the polygon (Polygonal chain) , in the type of `{x1,y1,x2,y2,...,xn,yn)`. 
   
-
   - Draw a filled polygon, starting from the first point in `xy` and closed by connecting the last point to the first point. 
 
 - #### `drawpixels.polyline(xy)`: 
 
-  - 
+  - `xy`: A table contains all the coordinate of the points in the polyline, in the type of `{x1,y1,x2,y2,...,xn,yn)`. 
   
-  
+  - Draw a polyline, starting from the first point and end with the last point in `xy` table, without filling or closing. 
   
   
   
