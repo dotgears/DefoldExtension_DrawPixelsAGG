@@ -8,6 +8,8 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 
 > https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/archive/master.zip
 
+From "Project" menu in the taskbar, click "Fetch Libraries" to Fetch the dependencies added above. 
+
 ## Set-up: 
 
 ##### Initially, a `buffer_info` table must be defined, which contains: 
@@ -98,7 +100,7 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
   
   - `r`: radius of the rounded circle at the edge. 
   
-- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3):
+- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3):`
 
   - `x1` and `y1`: Starting point of the curve. 
     
@@ -110,6 +112,18 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
   
   
   - `x4` and `y4`: Ending point of the curve.
+  
+- #### `drawpixels.polygon(xy)`: 
+
+  - `xy`: A table contains all the coordinate of the points in the polygon (Polygonal chain) , in the type of `{x1,y1,x2,y2,...,xn,yn)`. 
+  
+
+  - Draw a filled polygon, starting from the first point in `xy` and closed by connecting the last point to the first point. 
+
+- #### `drawpixels.polyline(xy)`: 
+
+  - 
+  
   
   
   
