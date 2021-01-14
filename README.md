@@ -4,6 +4,8 @@ AGG is a 2D, open source rendering library written by Maxim Shemanarev in C++. I
 
 Key advantages of AGG includes Anti-Aliasing and Subpixel Accuracy rendering, and high quality, high performance with lightweight design and flexibility. For more information, please visit [the AGG Project](http://agg.sourceforge.net/antigrain.com/index.html) Website. 
 
+AGG is licensed under [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html), therefore it is a free software 
+
 
 # DrawPixels
 
@@ -131,7 +133,6 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   
   
 ## LICENSING: 
-
 
     DrawPixelsAGG - A Defold native extension for drawing pixels and simple geometry into texture buffer using AGG 2.6
     Copyright (C) 2021 dotGEARS. 
