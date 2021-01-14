@@ -20,7 +20,9 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
 `height`: How high the drawing scene is. 
 
-`channel`: This is set as 3 if you use RGB, and 4 for RGBA.  
+`channel`: This is set to 3 if you use RGB, and 4 for RGBA.  
+
+##### A 
 
 
 ## Exposed functions: 
@@ -104,10 +106,22 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
   - Draw a [Bézier Curve](https://en.wikipedia.org/wiki/Bézier_curve) with three or four control points, depend on the input. 
 
-  - `x1` and `y1`: Starting point of the curve. 
+  - `x1` and `y1`: Starting point/ First control point of the curve. 
     
-  - `x3` and `y3`: Ending point of the curve. 
+  If there are three control points:    
   
+  - `x2` and `y2`: Second control point. 
+  
+  - `x3` and `y3`: Ending point/ Third control point. 
+  
+  If there are four control points: 
+  
+  - `x2` and `y2`: Second control point. 
+  
+  - `x3` and `y3`: Third control point. 
+  
+  - `x4` and `y4`: Ending point/ Fourth control point. 
+   
   
 - #### `drawpixels.polygon(xy)`: 
 
