@@ -96,7 +96,7 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   
   - `r`: radius of the rounded circle at the edge. 
   
-- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3):`
+- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3,x4,y4):`
 
   - Draw a [Bézier Curve](https://en.wikipedia.org/wiki/Bézier_curve) with three or four control points, depend on the input. 
 
@@ -132,7 +132,7 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   
   
   
-## LICENSING: 
+## License: 
 
     DrawPixelsAGG - A Defold native extension for drawing pixels and 
     simple geometry into texture buffer using AGG 2.6
