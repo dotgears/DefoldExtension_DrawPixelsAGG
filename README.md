@@ -8,7 +8,7 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 
 > https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/archive/master.zip
 
-From "Project" menu in the taskbar, click "Fetch Libraries" to Fetch the dependencies added above. 
+From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the dependencies added above. 
 
 ## Set-up: 
 
@@ -102,16 +102,12 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to Fetch the depende
   
 - #### `drawpixels.curve(x1,y1,x2,y2,x3,y3):`
 
-  - `x1` and `y1`: Starting point of the curve. 
-    
-  - `x3` and `y3`: Ending point of the curve.
-  
-- #### `drawpixels.curve(x1,y1,x2,y2,x3,y3,x4,y4)`:
+  - Draw a [Bézier Curve](https://en.wikipedia.org/wiki/Bézier_curve) with three or four control points, depend on the input. 
 
   - `x1` and `y1`: Starting point of the curve. 
+    
+  - `x3` and `y3`: Ending point of the curve. 
   
-  
-  - `x4` and `y4`: Ending point of the curve.
   
 - #### `drawpixels.polygon(xy)`: 
 
