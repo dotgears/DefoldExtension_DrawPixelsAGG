@@ -10,17 +10,6 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 
 From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the dependencies added above. 
 
-## Set-up: 
-
-##### Initially, a `buffer_info` table must be defined, which contains: 
-
-`buffer`: Use [buffer.create](https://defold.com/ref/buffer/#buffer.create:element_count-declaration) to declare the buffer. 
-
-`width` : How wide the drawing scene is. 
-
-`height`: How high the drawing scene is. 
-
-`channel`: This is set to 3 if you use RGB, and 4 for RGBA.  
 
 
 ## Exposed functions: 
