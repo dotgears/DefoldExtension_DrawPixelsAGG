@@ -1,6 +1,13 @@
-# DrawPixels
-[Defold](https://defold.com/) Native extension for drawing pixels and simple geometry into texture buffer. Functions from the original AGG (written in C++) has been exposed to Lua to use in Defold. 
+## About Anti-Grain Geometry Library (AGG) 
 
+AGG is a 2D, open source rendering library written by Maxim Shemanarev in C++. It is not fully a graphic library - in other words it is a rendering engine that produdces pixel images in meory from some vectorial data. 
+
+Key advantages of AGG includes Anti-Aliasing and Subpixel Accuracy rendering, and high quality, high performance with lightweight design and flexibility. For more information, please visit [the AGG Project](http://agg.sourceforge.net/antigrain.com/index.html) Website. 
+
+
+# DrawPixels
+
+[Defold](https://defold.com/) native extension for drawing pixels and simple geometry into texture buffer. Functions from the original AGG (written in C++) has been exposed to Lua to use in Defold. The current version is build based on [AGG 2.6](https://github.com/ghaerr/agg-2.6) by Gregory Haerr. 
 
 
 ## To install the library: 
@@ -9,8 +16,6 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 > https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/archive/master.zip
 
 From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the dependencies added above. 
-
-
 
 ## Exposed functions: 
 
@@ -21,7 +26,7 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   - Destroy all what have been drawn. 
 
 - #### `drawpixels.clear(r,g,b,a)`: 
-
+  
 
 - #### `drawpixels.setLineWidth(Line_width)`: 
 
@@ -124,6 +129,18 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   
   
   
+  
+## LICENSING: 
+
+
+    Copyright (C) 2021 dotGEARS.
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.3
+    or any later version published by the Free Software Foundation;
+    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+    A copy of the license is included in the section entitled "GNU
+    Free Documentation License".
+
 
 
   
