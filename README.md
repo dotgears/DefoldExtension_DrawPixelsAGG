@@ -76,7 +76,7 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
   - `ry`: Vertical radius of the arc. 
   
-  - `start`: Starting  of the arc. 
+  - `start`: Starting  of the arc, in pi.
   
   - `sweep`: Sweeping  of the arc, in pi. 
  
@@ -87,6 +87,10 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   - `rx`: Horizontal radius of the star. 
 
   - `ry`: Vertical radius of the star. 
+  
+  - `startAngle`: The angle where the first point is drawn. Since a star has an amount of identical sides, the angle should be ranging from 0 to 0.4π to avoid      confusion.
+  
+  - `numRays`: Number of sides. 
   
 - #### `drawpixels.roundedRect(x1,y1,x2,y2,r)`:
 
