@@ -199,6 +199,21 @@ static int drawpixels_setLineColor(lua_State *L)
 	return 0;
 }
 
+static int drawpixels_setFillColor(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	int32_t b = luaL_checknumber(L, 1);
+	int32_t g = luaL_checknumber(L, 2);
+	int32_t r = luaL_checknumber(L, 3);
+	int32_t a = luaL_checknumber(L, 4);
+
+	mAgg->fillColor(Agg2D::Color(r, g, b, a));
+
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
 static int drawpixels_triangle(lua_State *L)
 {
 	int top = lua_gettop(L);
@@ -449,6 +464,7 @@ static const luaL_reg Module_methods[] =
 		{"curve", drawpixels_curve},
 		{"polygon", drawpixels_polygon},
 		{"polyline", drawpixels_polyline},
+		{"setFillColor", drawpixels_setFillColor},
 
 
 		{0, 0}};

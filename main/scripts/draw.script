@@ -3,8 +3,10 @@ local settings = {
 	BUFFER_HEIGHT = 1024
 }
 
-function init(self)
+local motion_lines = require "main.motionline"
 
+function init(self)
+	msg.post(".", "acquire_input_focus")
 	self.buffer_info = {
 		buffer = buffer.create(settings.BUFFER_WIDTH * settings.BUFFER_HEIGHT, {{name = hash("rgba"), type = buffer.VALUE_TYPE_UINT8, count = 4}}),
 		width = settings.BUFFER_WIDTH,
@@ -33,21 +35,83 @@ function final(self)
 	drawpixels.destroy()
 end
 
+-- function on_input(self, action_id, action) 
+-- 
+-- 	local point = {
+-- 		x = action.x,
+-- 		y = action.y
+-- 	}
+-- 
+-- 	motion_lines.addPoint(point)
+-- end
+-- 
 function update(self, dt)
 	drawpixels.clear(0, 0, 0, 0)
+	
+	
+	-- draw curve 
+	-- drawpixels.curve(-400,0,500,500,400,0)
+	
+	-- draw roundedRect 
+ 	-- drawpixels.roundedRect(-100,-100,200,100,25)
 
-	drawpixels.removePath()
+	
+	-- draw arcs 
+	-- drawpixels.arc(0,0,400,250,math.pi,-math.pi*(3/4))
+	-- 
+	-- drawpixels.moveTo(0,0) 
+	-- drawpixels.lineTo(-400,0) 
+	-- drawpixels.moveTo(0,0) 
+	-- drawpixels.lineTo(0,250) 
+	-- drawpixels.moveTo(0,0) 
+	-- drawpixels.lineTo(400,0) 
+	-- 
+	-- 
+	-- drawpixels.drawPath()
+	-- 
+	
+	 
+	-- draw an ellipse 
+	-- drawpixels.ellipse(0,0,150,300)
+	-- 
+	-- draw a rectangle 
+	-- drawpixels.rectangle(0,0,300,300)
+	-- 
+	-- draw a triangle 
+ 	-- drawpixels.triangle(0,0,150,150,300,0)
+	
+	-- draw lines 
+	-- drawpixels.moveTo(100,100) 
+	-- drawpixels.lineTo(200,0) 
+	-- drawpixels.lineTo(-100,0)
+	-- drawpixels.lineTo(0,200)
+	-- drawpixels.drawPath()
+ 
 
-	-- drawpixels.star(0,0,50,100,math.pi * 0.5 ,5)
-	local xy = { 0, 0, 0, 100, 100, 100 }
-	drawpixels.polygon(xy)
+	-- Draw a star 
+-- 	drawpixels.star(150, 0, 100, 200, math.pi*0.4 ,5)
+-- 	drawpixels.star(-150, 0, 50, 100, math.pi*0.5 ,5)
+-- 
+	-- Draw a polygon
+-- 	local xy = { 0,0 ,0,200, 200,200, 500,100, 300,50 }
+-- 	drawpixels.polygon(xy)
 
-	local xy2 = {}
-	for k, v in pairs(xy) do 
-		table.insert(xy2, v + 150)
-	end
-	drawpixels.polyline(xy2)
+	-- 	draw a polyline 
+-- 	local xy = { 0,0 ,0,200, 200,200, 500,100, 300,50 }
+-- 	drawpixels.polyline(xy)
+-- 
+-- 	local xy2 = { -50,-50 ,-50,-200, -200,-200, -500,-100, -300,-50 ,-50,-50 }
+-- 	drawpixels.polyline(xy2)
+
+
+	
 	
 
+-- 	local xy2 = {}
+-- 	for k, v in pairs(xy) do 
+-- 		table.insert(xy2, v + 150)
+-- 	end
+-- 	drawpixels.polyline(xy2)
+	
 	resource.set_texture(self.resource_path, self.header, self.buffer_info.buffer)
 end
