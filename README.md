@@ -93,6 +93,8 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   
   - `numRays`: Number of sides. 
   
+  ![Star](DefoldExtension_DrawPixelsAGG/img/star.png)
+  
 - #### `drawpixels.roundedRect(x1,y1,x2,y2,r)`:
 
   - `x1` and `y1`: Position of bottom-left point of the rectangle. 
