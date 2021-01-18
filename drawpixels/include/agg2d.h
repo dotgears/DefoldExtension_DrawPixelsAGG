@@ -488,7 +488,7 @@ public:
 
 private:
     void render(bool fillColor);
-    // void render(FontRasterizer &ras, FontScanline &sl);
+     // void render(FontRasterizer &ras, FontScanline &sl);
 
     void addLine(double x1, double y1, double x2, double y2);
     void updateRasterizerGamma();
