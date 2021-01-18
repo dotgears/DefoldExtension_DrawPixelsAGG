@@ -60,7 +60,6 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
   - `x2` and `y2`: Position of the top-right point of the rectangle. 
   
-  ![altText](DefoldExtension_DrawPixelsAGG/img/rectangle.png)
 
 - #### `drawpixels.ellipse(cx,cy,rx,ry)`: 
 
