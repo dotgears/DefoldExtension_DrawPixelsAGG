@@ -254,8 +254,8 @@ static int drawpixels_ellipse(lua_State *L)
 {
 	int top = lua_gettop(L);
 
-	double cx = luaL_checknumber(L, 1) + offset_x;
-	double cy = luaL_checknumber(L, 2) + offset_y;
+	double cx = luaL_checknumber(L, 1) 
+	double cy = luaL_checknumber(L, 2) 
 	double rx = luaL_checknumber(L, 3);
 	double ry = luaL_checknumber(L, 4);
 
