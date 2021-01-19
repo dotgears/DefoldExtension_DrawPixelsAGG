@@ -28,6 +28,8 @@ function init(self)
 	
 	drawpixels.setLineWidth(5)
 	drawpixels.setLineColor(255, 255, 255, 128)
+	drawpixels.setFillColor(0, 0, 0, 128)
+	
 
 end
 
@@ -78,7 +80,7 @@ function update(self, dt)
 	-- drawpixels.rectangle(0,0,300,300)
 	-- 
 	-- draw a triangle 
- 	-- drawpixels.triangle(0,0,150,150,300,0)
+  	drawpixels.triangle(0,0,150,150,300,0)
 	
 	-- draw lines 
 	-- drawpixels.moveTo(100,100) 

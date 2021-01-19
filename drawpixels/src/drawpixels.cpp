@@ -82,8 +82,8 @@ static void read_and_validate_buffer_info(lua_State *L, int index)
 		buffer_info.premultiply_alpha = false;
 	}
 
-	offset_x = buffer_info.width * 0.5;
-	offset_y = buffer_info.height * 0.5;
+	// offset_x = buffer_info.width * 0.5;
+	// offset_y = buffer_info.height * 0.5;
 }
 
 static int drawpixels_clear(lua_State *L)
@@ -407,6 +407,7 @@ static int drawpixels_polygon(lua_State *L)
 		top = lua_gettop(L);
 
 		assert(top == lua_gettop(L));
+
 	}
 	return 0;
 }
