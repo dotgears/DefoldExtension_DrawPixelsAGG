@@ -12,8 +12,10 @@
 #include <algorithm>
 #include <string>
 #include <stack>
+#include <iostream>
 
 #include "agg2d.h"
+
 
 struct BufferInfo
 {
@@ -82,9 +84,9 @@ static void read_and_validate_buffer_info(lua_State *L, int index)
 		buffer_info.premultiply_alpha = false;
 	}
 
-	// offset_x = buffer_info.width * 0.5;
-	// offset_y = buffer_info.height * 0.5;
-}
+// 	offset_x = buffer_info.width * 0.5;
+// 	offset_y = buffer_info.height * 0.5;
+	 }
 
 static int drawpixels_clear(lua_State *L)
 {
@@ -179,10 +181,57 @@ static int drawpixels_setLineWidth(lua_State *L)
 
 	double line_width = luaL_checknumber(L, 1);
 	mAgg->lineWidth(line_width);
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
+static int drawpixels_setLineCap(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	int index = luaL_checknumber(L, 1);
+	
+	switch (index) { 
+		case 0: 
+			mAgg->lineCap(Agg2D::CapButt);
+			break; 
+		case 1: 
+			mAgg->lineCap(Agg2D::CapRound); 
+			break;
+		case 2: 
+			mAgg->lineCap(Agg2D::CapSquare);
+			break; 
+	}
 
 	assert(top == lua_gettop(L));
 	return 0;
 }
+
+static int drawpixels_setLineJoin(lua_State *L)
+{
+	int top = lua_gettop(L);
+
+	int index = luaL_checknumber(L, 1);
+	
+	switch (index) { 
+		case 0: 
+			mAgg->lineJoin(Agg2D::JoinMiter);
+			break; 
+		case 1: 
+			mAgg->lineJoin(Agg2D::JoinRound); 
+			break;
+		case 2: 
+			mAgg->lineJoin(Agg2D::JoinBevel);
+			break; 		
+	}
+
+	assert(top == lua_gettop(L));
+	return 0;
+}
+
+
+
+
 
 static int drawpixels_setLineColor(lua_State *L)
 {
@@ -466,6 +515,8 @@ static const luaL_reg Module_methods[] =
 		{"polygon", drawpixels_polygon},
 		{"polyline", drawpixels_polyline},
 		{"setFillColor", drawpixels_setFillColor},
+		{"setLineJoin", drawpixels_setLineJoin},
+		{"setLineCap", drawpixels_setLineCap},
 
 
 		{0, 0}};
