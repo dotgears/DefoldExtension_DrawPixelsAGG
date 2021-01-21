@@ -28,9 +28,9 @@ namespace agg
     //-------------------------------------------------------------line_cap_e
     enum line_cap_e
     {
-        butt_cap,
-        square_cap,
-        round_cap
+        butt_cap = 0,
+        square_cap = 1,
+        round_cap = 2
     };
 
     //------------------------------------------------------------line_join_e
