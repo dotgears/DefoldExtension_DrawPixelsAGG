@@ -1,0 +1,250 @@
+local settings = {
+  BUFFER_WIDTH = 1024,
+  BUFFER_HEIGHT = 1024
+}
+
+function init(self)
+  msg.post("@render:", "clear_color", {color = vmath.vector4(1, 1, 1, 1)})
+  
+  self.buffer_info = {
+    buffer = buffer.create(settings.BUFFER_WIDTH * settings.BUFFER_HEIGHT, {{name = hash("rgba"), type = buffer.VALUE_TYPE_UINT8, count = 4}}),
+    width = settings.BUFFER_WIDTH,
+    height = settings.BUFFER_HEIGHT,
+    channels = 4 -- 3 for rgb, 4 for rgba
+  }
+  
+  self.endshape = false
+
+  
+  self.list_pos = {}
+  self.dirty = true
+  self.current_color = vmath.vector4(0, 0, 0, 1)
+  self.current_tool = "pencil" 
+  -- drawing params
+  self.prev_pos = vmath.vector3()
+  self.resource_path = go.get("#sprite", "texture0")
+  
+  self.header = {
+    width = settings.BUFFER_WIDTH,
+    height = settings.BUFFER_HEIGHT,
+    type = resource.TEXTURE_TYPE_2D,
+    format = resource.TEXTURE_FORMAT_RGBA,
+    num_mip_maps = 1
+  }
+
+  drawpixels.setup(self.buffer_info)
+  
+   
+end
+
+function update(self, dt)
+ 
+  -- update texture if it's dirty (ie we've drawn to it)
+  if self.dirty then
+    resource.set_texture(self.resource_path, self.header, self.buffer_info.buffer)
+
+    self.dirty = false
+  end
+
+  --  for key,value in pairs(self.list_pos) do print(key .. " " .. value) end
+end
+
+function on_message(self, message_id, message, sender)
+  if message_id == hash("change_color") then
+    self.current_color = message.color
+  elseif message_id == hash("change_tool") then
+    self.current_tool = message.tool
+    self.bezier_dots = {}
+    self.last_pos = {}
+  elseif message_id == hash("clear") then
+    drawpixels.clear(255,255,255,128)
+    drawpixels.removePath()
+    self.bezier_dots = {}
+    self.last_pos = {}
+    self.dirty = true
+    self.current_tool = "pencil"
+    self.list_pos = {}
+    self.endshape = false
+    
+  end
+end
+
+
+function on_input(self, action_id, action)
+  if action_id == hash("confirm") then 
+    self.endshape = true 
+  end 
+  
+  if action_id == hash("touch") then
+    local pos = vmath.vector3(action.x, action.y, 0)
+    
+    if action.pressed then
+      self.drawing = true
+      self.touch_pos = pos
+      
+      if self.current_tool == "polygon" or self.current_tool == "filled_polygon" or self.current_tool == "bezier" then
+        if not self.endshape then  
+          table.insert(self.list_pos, pos.x)
+          table.insert(self.list_pos, pos.y)
+        end 
+
+      end 
+      
+      
+    elseif action.released then
+      self.drawing = false
+      
+      if not self.last_pos.x then
+        self.last_pos.x = pos.x
+        self.last_pos.y = pos.y
+        
+      else
+        self.last_pos.x = nil
+      end
+      
+        
+
+      
+    end
+    
+    if self.drawing then
+      -- calculate the length and direction from the previous touch
+      -- position to the current position
+      local length = math.ceil(vmath.length(self.touch_pos - pos))
+      local dir = vmath.normalize(self.touch_pos - pos)
+      
+      if length == 0 then
+        length = 1
+        dir = vmath.vector3(0)
+      end
+      
+      if self.prev_pos == pos then
+        return false
+      end
+      
+      self.prev_pos = self.touch_pos
+      -- use current tool from the previous touch position to
+      -- the current touch position0
+
+      
+      while length > 0 do
+        if self.current_tool == "pencil" then
+          drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)        
+          drawpixels.setFillColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)                     
+          drawpixels.ellipse(self.touch_pos.x, self.touch_pos.y, 1, 0.5)
+           
+        elseif self.current_tool == "circle" then
+          drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+          drawpixels.setFillColor(0,0,0, 0)
+          
+          if self.last_pos.x then 
+            local distance = math.abs(math.sqrt((self.last_pos.x - self.touch_pos.x) ^ 2 + (self.last_pos.y - self.touch_pos.y) ^ 2))
+            drawpixels.ellipse(self.last_pos.x, self.last_pos.y,distance,distance)
+          end 
+                  
+        elseif self.current_tool == "line" then
+          drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+          drawpixels.lineTo(self.touch_pos.x, self.touch_pos.y)
+          drawpixels.drawPath() 
+          
+        elseif self.current_tool == "filled_circle" then
+          if self.last_pos.x then 
+            drawpixels.setFillColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            local distance = math.abs(math.sqrt((self.last_pos.x - self.touch_pos.x) ^ 2 + (self.last_pos.y - self.touch_pos.y) ^ 2))
+            drawpixels.ellipse(self.last_pos.x, self.last_pos.y,distance,distance)
+          end 
+                 
+        elseif self.current_tool == "rect" then
+          drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)   
+          drawpixels.setFillColor(0,0,0, 0)                          
+          if self.last_pos.x then 
+            drawpixels.rectangle(self.last_pos.x, self.last_pos.y,self.touch_pos.x, self.touch_pos.y)
+          end 
+          
+        elseif self.current_tool == "filled_rect" then
+          if self.last_pos.x then 
+            drawpixels.setFillColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)         
+            drawpixels.rectangle(self.last_pos.x, self.last_pos.y,self.touch_pos.x, self.touch_pos.y)
+          end 
+          
+        elseif self.current_tool == "eraser" then
+          drawpixels.setLineColor(255,255,255,128)          
+          drawpixels.ellipse(self.touch_pos.x, self.touch_pos.y, 5, 2.5)
+          
+        elseif self.current_tool == "bezier" then
+          drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+
+          if not self.endshape then 
+            drawpixels.setLineColor(255,36,0,128) 
+            drawpixels.setFillColor(255,36,0,128)
+            drawpixels.ellipse(self.touch_pos.x, self.touch_pos.y,2,2) 
+          else
+            drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+
+            if #self.list_pos == 6 then 
+              drawpixels.curve(self.list_pos[1], self.list_pos[2], self.list_pos[3], self.list_pos[4], self.list_pos[5], self.list_pos[6])
+              self.list_pos = {}
+              self.endshape = false
+            elseif #self.list_pos == 8 then 
+              drawpixels.curve(self.list_pos[1], self.list_pos[2], self.list_pos[3], self.list_pos[4], self.list_pos[5], self.list_pos[6], self.list_pos[7], self.list_pos[8])
+              self.list_pos = {}
+              self.endshape = false
+            else 
+              print("Error: Can only draw Bezier curve with 3 or 4 anchor points.")
+              self.list_pos = {}
+              self.endshape = false
+            end 
+          end 
+
+        elseif self.current_tool == "rotated_rect" then
+          if self.last_pos.x then 
+            drawpixels.setFillColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            local distance = math.abs(math.sqrt((self.last_pos.x - self.touch_pos.x) ^ 2 + (self.last_pos.y - self.touch_pos.y) ^ 2))
+            drawpixels.roundedRect(self.last_pos.x, self.last_pos.y,self.touch_pos.x, self.touch_pos.y, distance/20)
+          end 
+          
+        elseif self.current_tool == "polygon" then
+          
+          if not self.endshape then 
+            drawpixels.setLineColor(255,36,0,128)
+            drawpixels.setFillColor(255,36,0,128)
+            drawpixels.ellipse(self.touch_pos.x, self.touch_pos.y,2,2) 
+            drawpixels.drawPath()           
+          else
+            drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            drawpixels.setFillColor(0,0,0,0) 
+            drawpixels.polygon(self.list_pos)
+            self.list_pos = {} 
+            self.endshape = false
+          end 
+        
+        elseif self.current_tool == "filled_polygon" then
+          
+          if not self.endshape then 
+            drawpixels.setLineColor(255,36,0,128) 
+            drawpixels.setFillColor(255,36,0,128)
+            drawpixels.ellipse(self.touch_pos.x, self.touch_pos.y,2,2) 
+            drawpixels.drawPath() 
+          else
+            drawpixels.setLineColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255) 
+            drawpixels.setFillColor(self.current_color.x*255, self.current_color.y*255, self.current_color.z*255, self.current_color.w*255)
+            drawpixels.polygon(self.list_pos)
+            self.list_pos = {}
+            self.endshape = false
+          end 
+          
+        end 
+
+        
+
+        self.dirty = true
+        self.touch_pos = self.touch_pos - dir
+        length = length - 1
+        
+      end
+    end
+  end
+end

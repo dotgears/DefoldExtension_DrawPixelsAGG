@@ -181,6 +181,7 @@ static int drawpixels_setLineWidth(lua_State *L)
 
 	double line_width = luaL_checknumber(L, 1);
 	mAgg->lineWidth(line_width);
+
 	assert(top == lua_gettop(L));
 	return 0;
 }
