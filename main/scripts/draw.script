@@ -6,6 +6,7 @@ local settings = {
 local motion_lines = require "main.motionline"
 
 function init(self)
+	msg.post("@render:", "clear_color", {color = vmath.vector4(1, 1, 1, 1)})
 	msg.post(".", "acquire_input_focus")
 	self.buffer_info = {
 		buffer = buffer.create(settings.BUFFER_WIDTH * settings.BUFFER_HEIGHT, {{name = hash("rgba"), type = buffer.VALUE_TYPE_UINT8, count = 4}}),
@@ -31,8 +32,6 @@ function init(self)
 	drawpixels.setLineJoin(4)
 	
 	
-	drawpixels.setLineColor(255, 255, 255, 128)
-	drawpixels.setFillColor(0, 0, 0, 128)   
 	
 
 end
@@ -55,70 +54,60 @@ end
 function update(self, dt)
 	drawpixels.clear(0, 0, 0, 0)
 	-- motion_lines.update(dt)
-	-- 
-	
 	
 	-- draw curve 
-	-- drawpixels.curve(-400,0,500,500,400,0)
+	drawpixels.setLineColor(0,255,0,128)
+	drawpixels.curve(50,350,250,500,350,550,500,350)
+
+	drawpixels.setLineColor(0, 0, 0, 128)   
+	drawpixels.moveTo(50,350) 
+	drawpixels.lineTo(250,500) 
+	drawpixels.lineTo(350,550)
+	drawpixels.lineTo(500,350)
+	drawpixels.drawPath()
+	
+	drawpixels.ellipse(250,500,5,5)
+	drawpixels.ellipse(350,550,5,5)
+	drawpixels.ellipse(50,350,5,5)
+	drawpixels.ellipse(500,350,5,5)
 	
 	-- draw roundedRect 
- 	-- drawpixels.roundedRect(-100,-100,200,100,25)
+	drawpixels.setLineColor(255,0,0,128)
+	drawpixels.roundedRect(350,750,600,600,25)
 
 	
 	-- draw arcs 
-	-- drawpixels.arc(0,0,400,250,math.pi,-math.pi*(3/4))
-	-- 
-	drawpixels.moveTo(150,300) 
-	drawpixels.lineTo(450,300) 
-	drawpixels.lineTo(700,250) 
-
-	-- 
-	-- 
-	-- drawpixels.drawPath()
-	-- 
+	drawpixels.setLineColor(0,0,255,128)
+	drawpixels.arc(850,70,200,250,math.pi,-math.pi*(3/4))
 	
 	 
 	-- draw an ellipse 
-	-- drawpixels.ellipse(0,0,150,300)
-	-- 
+	drawpixels.setLineColor(0,255,255,128)
+	drawpixels.ellipse(150,900,120,50)
+	
 	-- draw a rectangle 
-	-- drawpixels.rectangle(0,0,300,300)
+	drawpixels.setLineColor(255,128,128,128)
+	drawpixels.rectangle(350,1000,600,850)
 	-- 
 	-- draw a triangle 
- --  	drawpixels.triangle(0,0,150,150,300,0)
-	-- 
-	-- draw lines 
-	drawpixels.moveTo(100,100) 
-	drawpixels.lineTo(200,400) 
-	drawpixels.lineTo(-100,0)
-	drawpixels.lineTo(0,200)
-	drawpixels.drawPath()
- 
+	drawpixels.setLineColor(128,128,128,128)
+	drawpixels.triangle(700,800,1000,800,850,1000)
+	 
 
 	-- Draw a star 
--- 	drawpixels.star(150, 300, 100, 200, math.pi*0.4 ,5)
--- 	drawpixels.star(450, 300, 50, 100, math.pi*0.5 ,5)
--- 
+	drawpixels.setLineColor(128,255,128,128)
+	drawpixels.star(150, 700, 40, 100, math.pi*0.4 ,8)
+
 	-- Draw a polygon
--- 	local xy = { 0,0 ,0,200, 200,200, 500,100, 300,50 }
--- 	drawpixels.polygon(xy)
+	drawpixels.setLineColor(128,128,255,128)
+	local xy = { 700,350 ,700,600, 850,700, 950,700, 950,550, 900,450 }
+	drawpixels.polygon(xy)
 
 	-- 	draw a polyline 
--- 	local xy = { 0,0 ,0,200, 200,200, 500,100, 300,50 }
--- 	drawpixels.polyline(xy)
--- 
--- 	local xy2 = { -50,-50 ,-50,-200, -200,-200, -500,-100, -300,-50 ,-50,-50 }
--- 	drawpixels.polyline(xy2)
+	drawpixels.setLineColor(255,128,255,128)
+	local xy = { 100,100 ,100,250, 250,250, 500,100, 300,50 }
+	drawpixels.polyline(xy)
 
-
-	
-	
-
--- 	local xy2 = {}
--- 	for k, v in pairs(xy) do 
--- 		table.insert(xy2, v + 150)
--- 	end
--- 	drawpixels.polyline(xy2)
 	
 	resource.set_texture(self.resource_path, self.header, self.buffer_info.buffer)
 end
