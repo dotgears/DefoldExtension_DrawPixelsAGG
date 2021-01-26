@@ -1154,7 +1154,7 @@ nodes {
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
   texture: "draw_pixels/rotated_rect"
-  id: "rotated_rect"
+  id: "rounded_rect"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
