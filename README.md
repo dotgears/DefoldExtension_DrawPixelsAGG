@@ -86,13 +86,13 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
   - `cx` and `cy`: Center position of the star. 
 
-  - `rx`: Horizontal radius of the star. 
+  - `rx`: Radius of the star. 
 
-  - `ry`: Vertical radius of the star. 
+  - `ry`: Radius of each nodes of the star. 
   
-  - `startAngle`: The angle where the first point is drawn. Since a star has an amount of identical sides, the angle should be ranging from 0 to 0.4π to avoid      confusion.
+  - `startAngle`: The angle where the first point is drawn. 
   
-  - `numRays`: Number of sides. 
+  - `numRays`: Number of nodes. 
   
   
 - #### `drawpixels.roundedRect(x1,y1,x2,y2,r)`:
