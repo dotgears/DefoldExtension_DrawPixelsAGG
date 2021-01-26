@@ -20,6 +20,7 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the dependencies added above. 
 
 ## Exposed functions: 
+  ![Star](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/example/images/allshapes.png)
 
 - #### `drawpixels.setup(buffer_info)`: 
   - Setup to use the drawpixels. Take the buffer_info declared above as input. 
@@ -93,7 +94,6 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
   
   - `numRays`: Number of sides. 
   
-  ![Star](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/img/star.png)
   
 - #### `drawpixels.roundedRect(x1,y1,x2,y2,r)`:
 
