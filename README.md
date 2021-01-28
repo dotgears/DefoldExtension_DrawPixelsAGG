@@ -38,6 +38,18 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 - #### `drawpixels.setLineColor(r,g,b,a)`: 
 
   - Set line color using RGBA color code.
+  
+  
+  ![LineCap](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/demo_1/images/cap-join.png)
+  
+- #### `drawpixels.setLineCap(a)`: 
+
+  - Set line Cap. `a = 0` for Butt cap, 1 for Round cap and 2 for Square (Projecting) dap.
+  
+- #### `drawpixels.setLineJoin(a)`: 
+
+  - Set line Join. `a = 0` for Mitter join, 1 for Round join and 2 for Bevel join. 
+
 
 - #### `drawpixels.moveTo(x,y)`: 
 
@@ -131,13 +143,13 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
   - `xy`: A table contains all the coordinate of the points in the polygon (Polygonal chain) , in the type of `{x1,y1,x2,y2,...,xn,yn)`. 
   
-  - Draw a filled polygon, starting from the first point in `xy` and closed by connecting the last point to the first point. 
+  - Draw a polygon, starting from the first point in `xy` and closed by connecting the last point to the first point. 
 
 - #### `drawpixels.polyline(xy)`: 
 
-  - `xy`: A table contains all the coordinate of the points in the polyline, in the type of `{x1,y1,x2,y2,...,xn,yn)`. 
+  - `xy`: A table  all the coordinate of the points in the polyline, in the type of `{x1,y1,x2,y2,...,xn,yn)`. 
   
-  - Draw a polyline, starting from the first point and end with the last point in `xy` table, without filling or closing. 
+  - Draw a polyline, starting from the first point and end with the last point in `xy` table, without closing. 
   
   
   
