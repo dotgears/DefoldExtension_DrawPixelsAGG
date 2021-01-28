@@ -20,7 +20,7 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the dependencies added above. 
 
 ## Exposed functions: 
-  ![Shapes](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/example/images/allshapes.png)
+  ![Shapes](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/demo_1/images/allshapes.png)
 
 - #### `drawpixels.setup(buffer_info)`: 
   - Setup to use the drawpixels. Take the buffer_info declared above as input. 
