@@ -20,15 +20,15 @@ Simply open the [game.project](https://defold.com/manuals/project-settings/) set
 From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the dependencies added above. 
 
 ## Exposed functions: 
-  ![Star](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/example/images/allshapes.png)
+  ![Shapes](https://github.com/dotgears/DefoldExtension_DrawPixelsAGG/blob/master/example/images/allshapes.png)
 
 - #### `drawpixels.setup(buffer_info)`: 
   - Setup to use the drawpixels. Take the buffer_info declared above as input. 
 
 - #### `drawpixels.destroy()`: 
-  - Destroy all what have been drawn. 
 
 - #### `drawpixels.clear(r,g,b,a)`: 
+  - Clear the drawing board and set background color. 
   
 
 - #### `drawpixels.setLineWidth(Line_width)`: 
@@ -49,7 +49,10 @@ From "Project" menu in the taskbar, click "Fetch Libraries" to fetch the depende
 
 - #### `drawpixels.drawPath()`:
 
+   - Call this function after `lineTo()` to initialize the path. 
+
 - #### `drawpixels.removePath()`: 
+
 
 - #### `drawpixels.triangle(x1,y1,x2,y2,x3,y3)`:
 
