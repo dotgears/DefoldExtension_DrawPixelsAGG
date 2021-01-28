@@ -65,6 +65,7 @@ function update(self, dt)
 	drawpixels.lineTo(350,550)
 	drawpixels.lineTo(500,350)
 	drawpixels.drawPath()
+	drawpixels.removePath()
 	
 	drawpixels.ellipse(250,500,5,5)
 	drawpixels.ellipse(350,550,5,5)

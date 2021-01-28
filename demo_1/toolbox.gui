@@ -1,11 +1,11 @@
-script: "/example/toolbox.gui_script"
+script: "/demo_1/toolbox.gui_script"
 fonts {
   name: "system_font"
   font: "/builtins/fonts/system_font.font"
 }
 textures {
   name: "draw_pixels"
-  texture: "/example/draw_pixels.atlas"
+  texture: "/demo_1/draw_pixels.atlas"
 }
 background_color {
   x: 0.0
